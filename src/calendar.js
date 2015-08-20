@@ -233,7 +233,12 @@ angular.module('ui.calendar', [])
 
           var localeFullCalendarConfig = controller.getLocaleConfig(fullCalendarConfig);
           angular.extend(localeFullCalendarConfig, fullCalendarConfig);
-          options = { eventSources: sources };
+          options = { 
+          	eventSources: sources, 
+          	eventRender: function(event, element) { 
+            	element.find('.fc-title').append("<br/>" + event.description); 
+        	}
+          };
           angular.extend(options, localeFullCalendarConfig);
           //remove calendars from options
           options.calendars = null;
